@@ -77,13 +77,13 @@ namespace UnitTestProject2
             */
             //pakeiciau 
             //var provider = new FakeProvider(data);
-            var provider = new Mock<FruitDataProvider>();
+            var provider = new Mock<IFruitDataProvider>();
             var repository = new FruitRepository(provider.Object);
             
-            //Assert.AreEqual(285, repository.FruitCountFamily("Rosaceae"));
+            Assert.AreEqual(285, repository.FruitCountFamily("Rosaceae"));
             provider.Verify(x => x.GetRecentFruitsOfFamily("Rosaceae"), Times.Once()); //viena karta iskviestas
             Assert.AreEqual(285, repository.FruitCountFamily("Ebenaceae"));
-            //provider.Verify(x => x.GetRecentFruitsOfFamily("Rosaceae"), Times.Once()); //viena karta iskviestas
+            provider.Verify(x => x.GetRecentFruitsOfFamily("Rosaceae"), Times.Once()); //viena karta iskviestas
         }
     }
     
