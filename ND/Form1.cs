@@ -21,6 +21,9 @@ namespace ND
             InitializeComponent();
             var result = fruits.GetRecentFruits("all");
             SetListFromButton(result);
+            
+            
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
         }
 
         
@@ -43,6 +46,7 @@ namespace ND
         }
         public void SetListFromButton( List<Models.Root> result)
         {
+            //neveikia su name, double skaicium
             listView1.Items.Clear();
             foreach (var item in result)
             {
@@ -54,7 +58,8 @@ namespace ND
                 i.Tag = item;
                 listView1.Items.Add(i);
             }
-            listView1.Sorting = SortOrder.Ascending;
+          
+            //listView1.Sorting = SortOrder.Ascending;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,6 +113,16 @@ namespace ND
         {
             var result = fruits.GetRecentFruits("all");
             SetListFromButton(result);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
