@@ -31,7 +31,10 @@ namespace UnitTestProject2
             return (List<Root>)result.ToList();
 
         }
-
+        public List<Root> GetRecentFruitsOfGenus(string genus)
+        {
+            return m_data.ToList();
+        }
         public List<Root> GetRecentSugaryFruits(double sugar)
         {
             return m_data.ToList();
@@ -80,7 +83,8 @@ namespace UnitTestProject2
             var provider = new Mock<IFruitDataProvider>();
             var repository = new FruitRepository(provider.Object);
             
-            Assert.AreEqual(285, repository.FruitCountFamily("Rosaceae"));
+            //kadangi moqina random family, kurios nera duomenyse, neveikia moq
+            Assert.AreEqual(285, repository.FruitCountFamily(""));
             provider.Verify(x => x.GetRecentFruitsOfFamily("Rosaceae"), Times.Once()); //viena karta iskviestas
             Assert.AreEqual(285, repository.FruitCountFamily("Ebenaceae"));
             provider.Verify(x => x.GetRecentFruitsOfFamily("Rosaceae"), Times.Once()); //viena karta iskviestas

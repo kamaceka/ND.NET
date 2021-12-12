@@ -26,17 +26,16 @@ namespace ND
             try
             {
 
-            
-            // Uri baseUrl = new Uri("https://www.fruityvice.com/api/fruit/all");
-            //IRestClient client = new RestClient(baseUrl);
-            IRestRequest request = new RestRequest($"{name}", Method.GET);
-              
 
+                // Uri baseUrl = new Uri("https://www.fruityvice.com/api/fruit/all");
+                //IRestClient client = new RestClient(baseUrl);
+                IRestRequest request = new RestRequest($"{name}", Method.GET);
+                
             IRestResponse response = m_client.Execute(request);
-            Console.WriteLine(response.Content);
+           // Console.WriteLine(response.Content);
 
-            List<Root> results = JsonConvert.DeserializeObject<List< Root>>(response.Content);
-           // var status = results[0].Status;
+            List<Root> results = JsonConvert.DeserializeObject<List<Root>>(response.Content);
+           
             return results;
 
             }
@@ -56,7 +55,31 @@ namespace ND
 
 
                 IRestResponse response = m_client.Execute(request);
-                Console.WriteLine(response.Content);
+              //  Console.WriteLine(response.Content);
+
+                List<Root> results = JsonConvert.DeserializeObject<List<Root>>(response.Content);
+                // var status = results[0].Status;
+                return results;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+
+            }
+        }
+
+        
+
+        public List<Root> GetRecentFruitsOfGenus(string genus)
+        {
+            try
+            {
+                IRestRequest request = new RestRequest($"genus/{genus}", Method.GET);
+
+
+                IRestResponse response = m_client.Execute(request);
+              //  Console.WriteLine(response.Content);
 
                 List<Root> results = JsonConvert.DeserializeObject<List<Root>>(response.Content);
                 // var status = results[0].Status;
@@ -77,7 +100,7 @@ namespace ND
 
 
                 IRestResponse response = m_client.Execute(request);
-                Console.WriteLine(response.Content);
+             //   Console.WriteLine(response.Content);
 
                 List<Root> results = JsonConvert.DeserializeObject<List<Root>>(response.Content);
                 // var status = results[0].Status;
@@ -91,6 +114,6 @@ namespace ND
             }
         }
 
-       
+        
     }
 }

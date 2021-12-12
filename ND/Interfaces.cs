@@ -11,6 +11,8 @@ namespace ND
     {
         List<Root> GetRecentFruits(string name);
         List<Root> GetRecentFruitsOfFamily(string family);
-       List<Root> GetRecentSugaryFruits(double sugar);
+        List<Root> GetRecentFruitsOfGenus(string genus);
+        List<Root> GetRecentSugaryFruits(double sugar);
+        
     }
 }

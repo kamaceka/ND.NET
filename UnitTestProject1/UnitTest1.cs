@@ -31,11 +31,20 @@ namespace UnitTestProject1
             return (List<Root>)result.ToList(); 
 
         }
+        public List<Root> GetRecentFruitsOfGenus(string genus)
+        {
+
+            var result = m_data.Where(o => o.genus == genus);
+            return (List<Root>)result.ToList();
+
+        }
 
         public List<Root> GetRecentSugaryFruits(double sugar)
         {
             return m_data; //.ToList()
         }
+
+        
     }
     [TestClass]
     public class UnitTest1
@@ -88,9 +97,7 @@ namespace UnitTestProject1
             var data = new List<Root>()
             {
                
-
-                  
-               
+          
                   new Root {genus= "Diospyros",
                     name= "Persimmon",
                     id= 52,
@@ -119,10 +126,51 @@ namespace UnitTestProject1
             var provider = new FakeProvider(data);
             var repository = new FruitRepository(provider);
 
-            var max = repository.FruitProtein("banana");
+            var max = repository.FruitProtein("Diospyros");
             //Assert.AreEqual(data[0], max);
             //Assert.IsNull(max);
             Assert.AreEqual(data[1], max);
+        }
+        [TestMethod]
+        public void TestBiggestSugary()
+        {
+
+            var data = new List<Root>()
+            {
+
+
+                  new Root {genus= "Diospyros",
+                    name= "Persimmon",
+                    id= 52,
+                    family= "Ebenaceae",
+                    order= "Rosales",
+                    nutritions=new Nutritions { carbohydrates= 18,
+                        protein= 0,
+                        fat= 0,
+                        calories= 81,
+                        sugar= 18 } }
+                  ,
+                     new Root {genus= "Diospyros",
+                    name= "Banana",
+                    id= 52,
+                    family= "Ebenaceae",
+                    order= "Rosales",
+                    nutritions= new Nutritions{ carbohydrates= 18,
+                        protein= 3,
+                        fat= 0,
+                        calories= 81,
+                        sugar= 10 } }
+
+        };
+
+
+            var provider = new FakeProvider(data);
+            var repository = new FruitRepository(provider);
+
+            var max = repository.FruitSugar("all");
+            //Assert.AreEqual(data[0], max);
+            //Assert.IsNull(max);
+            Assert.AreEqual(data[0], max);
         }
     }
 }
