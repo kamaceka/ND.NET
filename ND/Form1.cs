@@ -46,7 +46,7 @@ namespace ND
         }
         public void SetListFromButton( List<Models.Root> result)
         {
-            //neveikia su  double skaicium
+            
             try
             {
                 listView1.Items.Clear();
@@ -90,6 +90,7 @@ namespace ND
             }
             if (radioButton3.Checked == true)
             {
+                
                 var result = fruits.GetRecentSugaryFruits(Convert.ToDouble(objTextBox));
                 SetListFromButton(result);
                 //max.name + " with "+ max.nutritions.sugar+ "g of sugar"
